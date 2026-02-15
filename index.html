@@ -73,19 +73,18 @@
         
         .dropdown { position: relative; }
         .dropdown-content {
-            display: none; position: absolute; top: 100%; right: 0;
+            display: none; position: absolute; top: 100%; left: 0;
             background: var(--header-bg); min-width: 220px;
             box-shadow: var(--shadow); border-radius: 8px; padding: 10px 0; border: 1px solid var(--border-color);
             backdrop-filter: blur(10px);
         }
         
-        /* Comportamento Desktop: Hover */
         @media (min-width: 769px) {
             .dropdown:hover .dropdown-content { display: block; }
         }
 
         .dropdown-item {
-            padding: 12px 20px; color: var(--text-secondary); cursor: pointer; transition: 0.2s; font-size: 13px; display: block;
+            padding: 12px 20px; color: var(--text-secondary); cursor: pointer; transition: 0.2s; font-size: 13px; display: flex; align-items: center; gap: 8px; text-decoration: none;
         }
         .dropdown-item:hover { background: var(--accent-color); color: white; }
 
@@ -98,38 +97,23 @@
 
         /* --- RESPONSIVIDADE (MOBILE) --- */
         @media (max-width: 768px) {
-            /* Ajustes do Header para caber tudo */
             header.top-bar { padding: 0 15px; }
-            
-            /* Oculta textos e elementos não essenciais */
             .brand-text { display: none; }
             .user-info-header { display: none; } 
-            
-            /* Ajuste do Menu Horizontal */
             .nav-menu { gap: 5px; }
-            .menu-btn { 
-                padding: 8px 10px; 
-                font-size: 12px; 
-                white-space: nowrap; /* Impede quebra de linha no nome */
-            }
+            .menu-btn { padding: 8px 10px; font-size: 12px; white-space: nowrap; }
             .menu-btn i { font-size: 18px; }
 
-            /* Ajuste do Dropdown no Mobile (Abre fixo abaixo do header) */
             .dropdown-content {
-                position: fixed; 
-                top: 70px; /* Logo abaixo do header */
-                left: 0; 
-                width: 100%; /* Ocupa a largura toda */
-                border-radius: 0; 
-                box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-                border: none; border-bottom: 1px solid var(--border-color);
+                position: fixed; top: 70px; left: 0; width: 100%; border-radius: 0; 
+                box-shadow: 0 10px 20px rgba(0,0,0,0.3); border: none; border-bottom: 1px solid var(--border-color);
             }
             .dropdown.active .dropdown-content { display: block; }
         }
 
         /* --- CONTEÚDO --- */
         #app-container { opacity: 0; transition: opacity 1s; }
-        .content-area { margin-top: 70px; height: calc(100vh - 70px); padding: 30px; box-sizing: border-box; overflow-y: auto; }
+        .content-area { margin-top: 70px; height: calc(100vh - 70px); padding: 30px; box-sizing: border-box; overflow-y: auto; scroll-behavior: smooth; }
 
         #home-content { max-width: 950px; margin: 30px auto; animation: fadeIn 1s; }
         
@@ -142,24 +126,43 @@
         .texto-inspirador { font-size: 16px; line-height: 1.8; color: var(--text-primary); text-align: justify; margin-bottom: 40px; }
         .highlight { color: var(--accent-color); font-weight: 700; }
 
-        /* Seção Equipe e Pilares */
+        /* Seções Gerais */
         .secao-info { margin-bottom: 30px; }
-        .secao-info h3 { color: var(--accent-color); border-bottom: 2px solid var(--dourado); display: inline-block; margin-bottom: 15px; text-transform: uppercase; font-size: 18px; letter-spacing: 1px; }
+        .secao-info h3, .links-section h3, .badges-section h3, .news-section h3 { 
+            color: var(--accent-color); border-bottom: 2px solid var(--dourado); display: inline-block; 
+            margin-bottom: 15px; padding-bottom: 5px; text-transform: uppercase; font-size: 18px; letter-spacing: 1px; 
+        }
+        
         .lista-pilares { list-style: none; padding: 0; }
         .lista-pilares li { margin-bottom: 15px; padding-left: 25px; position: relative; }
         .lista-pilares li::before { content: '\f058'; font-family: "Phosphor-Fill"; position: absolute; left: 0; color: var(--dourado); font-size: 18px; }
         
+        /* CARDS DA EQUIPE COM PATENTE DOURADA */
         .equipe-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
         .equipe-card { background: var(--card-bg); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); text-align: left; transition: 0.3s; }
         .equipe-card:hover { transform: translateY(-5px); border-color: var(--dourado); }
-        .equipe-card strong { color: var(--accent-color); display: block; font-size: 16px; margin-bottom: 5px; }
-        .equipe-card .cargo-principal { font-size: 13px; font-weight: 700; color: var(--text-primary); display: block; text-transform: uppercase; margin-bottom: 3px; }
-        .equipe-card .cargo-detalhe { font-size: 11px; color: var(--text-secondary); display: block; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.8; line-height: 1.4; }
-        .equipe-card .formacao { font-size: 12px; color: var(--dourado); display: block; margin-top: 10px; font-style: italic; }
+        .equipe-card strong { color: var(--accent-color); display: block; font-size: 16px; margin-bottom: 8px; }
+        
+        .equipe-card .cargo-principal { font-size: 13px; font-weight: 700; color: var(--text-primary); display: block; text-transform: uppercase; margin-bottom: 5px; }
+        
+        /* A Patente agora é Dourada e em Negrito */
+        .equipe-card .cargo-detalhe { font-size: 11px; color: var(--dourado); font-weight: 700; display: block; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.4; }
+        
+        .equipe-card .formacao { font-size: 12px; color: var(--text-secondary); display: block; margin-top: 8px; font-style: italic; }
+
+        /* NEST EM FOCO (NOTÍCIAS) */
+        .news-section { margin-top: 50px; margin-bottom: 40px; text-align: left; }
+        .news-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
+        .news-card {
+            background: var(--card-bg); padding: 25px; border-radius: 12px; text-decoration: none; color: var(--text-primary);
+            border: 1px solid var(--border-color); border-left: 5px solid var(--dourado); transition: 0.3s; display: block;
+        }
+        .news-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--dourado); }
+        .news-card h4 { margin: 0 0 10px 0; color: var(--accent-color); font-size: 18px; line-height: 1.3; }
+        .news-card p { margin: 0 0 15px 0; font-size: 14px; line-height: 1.6; color: var(--text-secondary); }
+        .news-card .news-meta { font-size: 11px; color: var(--dourado); font-weight: 700; text-transform: uppercase; display: flex; align-items: center; gap: 5px; }
 
         /* Links Úteis */
-        .links-section h3, .badges-section h3 { color: var(--accent-color); font-size: 18px; border-bottom: 2px solid var(--dourado); display: inline-block; padding-bottom: 5px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
-        
         .links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 40px; }
         .link-card {
             background: var(--card-bg); padding: 20px; border-radius: 10px; text-decoration: none; color: var(--text-primary);
@@ -170,34 +173,12 @@
 
         /* GRID DOS GRUPAMENTOS */
         .badges-grid {
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); 
-            gap: 20px; 
-            justify-items: center;
-            padding: 20px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 15px;
-            border: 1px solid var(--border-color);
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 20px; 
+            justify-items: center; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 15px; border: 1px solid var(--border-color);
         }
-        .badge-item {
-            width: 80px; height: 80px;
-            display: flex; justify-content: center; align-items: center;
-            transition: 0.3s;
-            filter: grayscale(20%);
-        }
-        .badge-item img {
-            max-width: 100%; max-height: 100%;
-            object-fit: contain;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
-        }
-        .badge-item:hover {
-            transform: scale(1.2);
-            filter: grayscale(0%);
-            z-index: 2;
-        }
-
-        .social-area { margin-top: 50px; display: flex; justify-content: center; align-items: center; gap: 10px; color: var(--dourado); font-weight: 600; }
-        .social-area a { color: var(--dourado); text-decoration: none; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
+        .badge-item { width: 80px; height: 80px; display: flex; justify-content: center; align-items: center; transition: 0.3s; filter: grayscale(20%); }
+        .badge-item img { max-width: 100%; max-height: 100%; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2)); }
+        .badge-item:hover { transform: scale(1.2); filter: grayscale(0%); z-index: 2; }
 
         #iframe-area {
             width: 100%; height: 100%; border-radius: 12px; overflow: hidden;
@@ -206,97 +187,57 @@
         iframe { width: 100%; height: 100%; border: none; }
         .oculto { display: none !important; }
 
-        /* --- MODAIS --- */
-        #custom-modal, #files-modal {
+        /* --- MODAL DE AVISO --- */
+        #custom-modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);
             z-index: 20000; display: flex; justify-content: center; align-items: center;
             opacity: 0; pointer-events: none; transition: opacity 0.3s;
         }
         .ativo { opacity: 1 !important; pointer-events: all !important; }
-
         .modal-box {
             background: var(--modal-bg); width: 340px; padding: 30px;
-            border-radius: 15px; text-align: center;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-            border: 1px solid var(--dourado); transform: scale(0.8); transition: transform 0.3s;
-            max-height: 80vh; overflow-y: auto;
+            border-radius: 15px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            border: 1px solid var(--dourado); transform: scale(0.8); transition: transform 0.3s; max-height: 80vh; overflow-y: auto;
         }
         .ativo .modal-box { transform: scale(1); }
-
         .modal-icon { font-size: 40px; color: var(--dourado); margin-bottom: 15px; }
         .modal-title { font-size: 18px; font-weight: 700; margin: 0 0 10px 0; color: var(--text-primary); }
         .modal-desc { font-size: 14px; color: var(--text-secondary); margin-bottom: 25px; line-height: 1.5; }
-        
-        .file-list { display: flex; flex-direction: column; gap: 10px; text-align: left; margin-bottom: 20px; }
-        .file-item {
-            padding: 12px; background: rgba(0,0,0,0.05); border-radius: 8px;
-            display: flex; align-items: center; gap: 10px; cursor: pointer;
-            transition: 0.2s; color: var(--text-primary); text-decoration: none; font-size: 13px; font-weight: 600;
-        }
-        .file-item:hover { background: var(--accent-color); color: white; }
-        .file-item i { font-size: 20px; color: var(--dourado); }
-        .file-item:hover i { color: white; }
-
         .btn-modal { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px; transition: 0.2s; }
         .btn-confirm { background: var(--accent-color); color: white; }
         .btn-confirm:hover { background: var(--dourado); }
-        .btn-cancel { background: transparent; border: 1px solid var(--text-secondary); color: var(--text-primary); }
+        .btn-cancel { background: transparent; border: 1px solid var(--text-secondary); color: var(--text-primary); margin-right: 10px;}
         .btn-cancel:hover { background: rgba(0,0,0,0.1); }
 
         /* --- LOGIN --- */
         #login-screen {
-            position: fixed; width: 100%; height: 100%;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            position: fixed; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;
             z-index: 9999; background-size: cover; background-position: center; transition: background-image 1s ease-in-out;
         }
-        #login-screen::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 20, 40, 0.7); z-index: -1;
-        }
-
+        #login-screen::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 20, 40, 0.7); z-index: -1; }
         .login-card {
-            background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2); padding: 40px 50px;
-            border-radius: 15px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            text-align: center; width: 360px; color: white;
-            animation: fadeIn 1s ease-out;
+            background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 40px 50px; border-radius: 15px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); text-align: center; width: 360px; color: white; animation: fadeIn 1s ease-out;
         }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
         .logo-img { width: 90px; margin-bottom: 20px; filter: drop-shadow(0 0 10px rgba(255,255,255,0.3)); }
-        
         .titulo-gcm { font-size: 20px; margin: 0; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; line-height: 1.2; }
         .titulo-gerencia { font-size: 13px; margin: 8px 0 2px 0; font-weight: 600; color: #ddd; letter-spacing: 1px; text-transform: uppercase; }
         .titulo-nucleo { font-size: 11px; margin: 0 0 25px 0; color: var(--dourado); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
-
         .input-wrapper { position: relative; width: 100%; margin: 10px 0; }
         .input-group input {
-            width: 100%; padding: 15px; 
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255,255,255,0.3); border-radius: 8px; color: white;
+            width: 100%; padding: 15px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255,255,255,0.3); border-radius: 8px; color: white;
             font-family: 'Montserrat', sans-serif; font-size: 16px; outline: none; transition: 0.3s; text-align: center; box-sizing: border-box; 
         }
         input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
         input[type=number] { -moz-appearance: textfield; }
         input:focus { border-color: var(--dourado); background: rgba(0,0,0,0.6); }
-
-        .toggle-password {
-            position: absolute; right: 15px; top: 50%; transform: translateY(-50%);
-            color: rgba(255,255,255,0.7); cursor: pointer; font-size: 20px;
-        }
+        .toggle-password { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.7); cursor: pointer; font-size: 20px; }
         .toggle-password:hover { color: white; }
-
-        .btn-login {
-            width: 100%; padding: 15px; margin-top: 20px; background: var(--dourado);
-            border: none; border-radius: 8px; color: white; font-weight: bold; font-size: 16px;
-            cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px;
-        }
+        .btn-login { width: 100%; padding: 15px; margin-top: 20px; background: var(--dourado); border: none; border-radius: 8px; color: white; font-weight: bold; font-size: 16px; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
         .btn-login:hover { background: #9e7c48; transform: scale(1.02); }
-        .spinner {
-            border: 3px solid rgba(255, 255, 255, 0.3); border-top: 3px solid var(--dourado);
-            border-radius: 50%; width: 25px; height: 25px; animation: spin 1s linear infinite; margin: 20px auto 0; display: none;
-        }
+        .spinner { border: 3px solid rgba(255, 255, 255, 0.3); border-top: 3px solid var(--dourado); border-radius: 50%; width: 25px; height: 25px; animation: spin 1s linear infinite; margin: 20px auto 0; display: none; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
     </style>
 </head>
@@ -311,15 +252,6 @@
             <div id="modal-actions" class="modal-actions">
                 <button class="btn-modal btn-confirm" onclick="fecharModal('custom-modal')">OK</button>
             </div>
-        </div>
-    </div>
-
-    <div id="files-modal">
-        <div class="modal-box">
-            <i class="ph ph-folder-open modal-icon"></i>
-            <h3 class="modal-title">Arquivos Disponíveis</h3>
-            <div id="files-list" class="file-list"></div>
-            <button class="btn-modal btn-cancel" onclick="fecharModal('files-modal')">Fechar</button>
         </div>
     </div>
 
@@ -360,7 +292,7 @@
                     <i class="ph ph-house"></i> Início
                 </div>
                 
-                <div class="dropdown" id="dropdown-paineis" onclick="toggleDropdown()">
+                <div class="dropdown" id="dropdown-paineis" onclick="toggleDropdown('dropdown-paineis')">
                     <div class="menu-btn">
                         <i class="ph ph-chart-bar"></i> Painéis <i class="ph ph-caret-down"></i>
                     </div>
@@ -372,9 +304,20 @@
                     </div>
                 </div>
 
-                <div class="menu-btn" onclick="abrirModalArquivos()">
-                    <i class="ph ph-folder"></i> Arquivos
+                <div class="dropdown" id="dropdown-arquivos" onclick="toggleDropdown('dropdown-arquivos')">
+                    <div class="menu-btn">
+                        <i class="ph ph-folder"></i> Arquivos <i class="ph ph-caret-down"></i>
+                    </div>
+                    <div class="dropdown-content">
+                        <a class="dropdown-item" href="./arquivos/Operaçao Carnaval 2025.pdf" target="_blank"><i class="ph ph-file-pdf"></i> Operação Carnaval 2025</a>
+                        <a class="dropdown-item" href="./arquivos/Operação Reveillon 2026.pdf" target="_blank"><i class="ph ph-file-pdf"></i> Operação Reveillon 2026</a>
+                    </div>
                 </div>
+
+                <div class="menu-btn" onclick="mostrarNoticias()">
+                    <i class="ph ph-newspaper"></i> Notícias
+                </div>
+
             </nav>
 
             <div class="user-actions">
@@ -389,7 +332,7 @@
             </div>
         </header>
 
-        <div class="content-area">
+        <div class="content-area" id="main-content-area">
             <div id="home-content">
                 <div style="text-align: center;">
                     <blockquote class="quote-destaque">
@@ -410,17 +353,17 @@
 
                         <p>Além de nossa atuação técnica, o NEST contribui diretamente para a renovação da corporação, ministrando a disciplina de Dados Históricos e Estatísticos nos cursos de formação de novos agentes.</p>
 
-                        <div class="secao-info">
+                        <div class="secao-info" style="margin-top: 40px;">
                             <h3>Base Legal</h3>
                             <p style="font-size: 14px;">O Núcleo da estatística (Nest), com as devidas atribuições de acordo o decreto nº 27.731 de 28 de setembro de 2016 em seu Art. 10 – IV b Estatística:</p>
-                            <ol style="font-size: 14px; line-height: 1.6;">
+                            <ol style="font-size: 14px; line-height: 1.6; text-align: left;">
                                 <li>Articular-se com as diversas esferas do Poder Público e entidades da sociedade civil e realizar os levantamentos estatísticos destes dados e estruturar as informações;</li>
                                 <li>Elaborar relatórios contendo o detalhamento e síntese das informações coletadas, identificando áreas e situações críticas ou potencialmente perigosas;</li>
                                 <li>Elaborar relatórios comparativos entre os dados de Salvador e demais cidades brasileiras ou de países estrangeiros, de acordo com padrões regulamentados.</li>
                             </ol>
                         </div>
 
-                        <div class="secao-info">
+                        <div class="secao-info" style="margin-top: 40px;">
                             <h3>Liderança e Equipe</h3>
                             <div class="equipe-grid">
                                 <div class="equipe-card">
@@ -440,21 +383,21 @@
                                 </div>
                             </div>
                             
-                            <h4 style="margin-top:25px; color: var(--dourado); text-transform: uppercase; font-size: 14px;">Equipe Técnica NEST</h4>
+                            <h4 style="margin-top:25px; color: var(--dourado); text-transform: uppercase; font-size: 14px; text-align: center;">Equipe Técnica NEST</h4>
                             <div class="equipe-grid">
                                 <div class="equipe-card" style="border-left: 4px solid var(--dourado);">
                                     <strong>Antonio Carlos Magalhães Lima</strong>
-                                    <span class="cargo-principal">Guarda Civil Municipal<br>Classe Distinta</span>
+                                    <span class="cargo-detalhe">Guarda Civil Municipal<br>Classe Distinta</span>
                                     <span class="formacao">Estatístico, Matemático, Cientista de Dados e Instrutor</span>
                                 </div>
                                 <div class="equipe-card" style="border-left: 4px solid var(--dourado);">
                                     <strong>Sidney de Souza Duarte</strong>
-                                    <span class="cargo-principal">Guarda Civil Municipal<br>Classe Distinta</span>
+                                    <span class="cargo-detalhe">Guarda Civil Municipal<br>Classe Distinta</span>
                                     <span class="formacao">Matemático e Cientista de Dados</span>
                                 </div>
                                 <div class="equipe-card" style="border-left: 4px solid var(--dourado);">
                                     <strong>Heber Santos Brito da Silva</strong>
-                                    <span class="cargo-principal">Guarda Civil Municipal<br>1ª Classe</span>
+                                    <span class="cargo-detalhe">Guarda Civil Municipal<br>1ª Classe</span>
                                     <span class="formacao">Cientista de Dados e Instrutor</span>
                                 </div>
                             </div>
@@ -462,9 +405,25 @@
                     </div>
                 </div>
 
+                <div class="news-section" id="secao-noticias">
+                    <h3>O NEST em Foco</h3>
+                    <div class="news-grid">
+                        <a href="https://guardamunicipal.salvador.ba.gov.br/gcm-registra-queda-de-ocorrencias-e-salto-na-identificacao-de-criancas-no-3o-dia-de-carnaval/" target="_blank" class="news-card">
+                            <h4>GCM registra queda de ocorrências e salto na identificação de crianças no 3º dia de Carnaval</h4>
+                            <p>O uso de inteligência e levantamento de dados operacionais apontam para uma redução significativa de ocorrências e aumento da eficiência na localização de crianças perdidas durante o circuito.</p>
+                            <div class="news-meta">
+                                <i class="ph ph-link"></i> Portal Oficial GCM Salvador
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
                 <div class="links-section">
                     <h3>Links Úteis</h3>
                     <div class="links-grid">
+                        <a href="https://guardamunicipal.salvador.ba.gov.br/" target="_blank" class="link-card">
+                            <i class="ph ph-shield-star"></i> Guarda Municipal
+                        </a>
                         <a href="https://salvador.ba.gov.br/" target="_blank" class="link-card">
                             <i class="ph ph-buildings"></i> Prefeitura de Salvador
                         </a>
@@ -499,32 +458,7 @@
     <script>
         const scriptURL = 'https://script.google.com/macros/s/AKfycbwFWQRpMoHs_gdLzG2fyopq4wgT0rSrrvenMsDWitFz8D4vcqxRQGuL6ldzLHHwy9hq3Q/exec'; 
 
-        // --- 1. CONFIGURAÇÃO DE ARQUIVOS PDF ---
-        const listaArquivos = [
-            { nome: "Operaçao Carnaval 2025", arquivo: "Operaçao Carnaval 2025.pdf" },
-			{ nome: "Operação Reveillon 2026", arquivo: "Operação Reveillon 2026.pdf" },
-        ];
-
-        function abrirModalArquivos() {
-            const container = document.getElementById('files-list');
-            container.innerHTML = ""; 
-
-            if (listaArquivos.length === 0) {
-                container.innerHTML = "<p style='color:#666'>Nenhum arquivo disponível.</p>";
-            } else {
-                listaArquivos.forEach(item => {
-                    const link = document.createElement('a');
-                    link.className = 'file-item';
-                    link.href = `./arquivos/${item.arquivo}`;
-                    link.target = "_blank"; 
-                    link.innerHTML = `<i class="ph ph-file-pdf"></i> ${item.nome}`;
-                    container.appendChild(link);
-                });
-            }
-            document.getElementById('files-modal').classList.add('ativo');
-        }
-
-        // --- 2. CONFIGURAÇÃO DOS BRASÕES (TODOS PNG) ---
+        // --- RENDERIZAR BRASÕES ---
         const listaGrupamentos = [
             'gepa.png', 'gestg.png', 'maria_da_penha.png', 'gem.png', 
             'goe.png', 'goc.png', 'rondac.png', 'escolar.png', 
@@ -543,7 +477,7 @@
         }
         document.addEventListener("DOMContentLoaded", renderizarGrupamentos);
 
-        // --- 3. LÓGICA DE SENHA E LOGIN ---
+        // --- LÓGICA DE SENHA E LOGIN ---
         document.getElementById('senha').addEventListener('input', function (e) {
             this.value = this.value.replace(/[^0-9]/g, '');
         });
@@ -598,10 +532,12 @@
         }
 
         // --- NAVEGAÇÃO E MODAIS ---
-        function toggleDropdown() {
-            // Em telas menores, alterna a classe active. Em maiores, o CSS hover cuida.
+        function toggleDropdown(id) {
             if (window.innerWidth <= 768) {
-                document.getElementById('dropdown-paineis').classList.toggle('active');
+                document.querySelectorAll('.dropdown').forEach(d => {
+                    if(d.id !== id) d.classList.remove('active');
+                });
+                document.getElementById(id).classList.toggle('active');
             }
         }
 
@@ -641,6 +577,12 @@
             document.getElementById('bi-frame').src = "";
             document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelector('.menu-btn i.ph-house').parentElement.classList.add('active');
+            
+            // Fecha dropdowns abertos
+            document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+            
+            // Traz scroll pro topo suavemente
+            document.getElementById('main-content-area').scrollTo({top: 0, behavior: 'smooth'});
         }
 
         function carregarBi(link) {
@@ -648,12 +590,20 @@
             document.getElementById('iframe-area').style.display = 'block';
             document.getElementById('bi-frame').src = link;
             document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelector('.dropdown .menu-btn').classList.add('active');
-            // Fecha dropdown se estiver no mobile
-            document.getElementById('dropdown-paineis').classList.remove('active');
+            document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
         }
 
-        // --- ROTAÇÃO DE FUNDO (APENAS 3 IMAGENS PNG) ---
+        function mostrarNoticias() {
+            mostrarHome();
+            setTimeout(() => {
+                const section = document.getElementById('secao-noticias');
+                if(section) {
+                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 100);
+        }
+
+        // --- ROTAÇÃO DE FUNDO (PNG) ---
         function toggleTheme() {
             const html = document.documentElement;
             const themeBtn = document.getElementById('theme-btn');
@@ -684,4 +634,3 @@
     </script>
 </body>
 </html>
-
