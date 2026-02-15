@@ -144,10 +144,7 @@
         .equipe-card strong { color: var(--accent-color); display: block; font-size: 16px; margin-bottom: 8px; }
         
         .equipe-card .cargo-principal { font-size: 13px; font-weight: 700; color: var(--text-primary); display: block; text-transform: uppercase; margin-bottom: 5px; }
-        
-        /* A Patente agora é Dourada e em Negrito */
         .equipe-card .cargo-detalhe { font-size: 11px; color: var(--dourado); font-weight: 700; display: block; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.4; }
-        
         .equipe-card .formacao { font-size: 12px; color: var(--text-secondary); display: block; margin-top: 8px; font-style: italic; }
 
         /* NEST EM FOCO (NOTÍCIAS) */
@@ -179,6 +176,48 @@
         .badge-item { width: 80px; height: 80px; display: flex; justify-content: center; align-items: center; transition: 0.3s; filter: grayscale(20%); }
         .badge-item img { max-width: 100%; max-height: 100%; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2)); }
         .badge-item:hover { transform: scale(1.2); filter: grayscale(0%); z-index: 2; }
+
+        /* REDES SOCIAIS (INSTAGRAM TRANSCENDENTAL) */
+        .social-area {
+            margin-top: 60px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        .social-area a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(176, 141, 87, 0.3);
+            border-radius: 50px;
+            color: var(--dourado);
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        .social-area a i {
+            font-size: 26px;
+            transition: transform 0.4s ease;
+        }
+        .social-area a:hover {
+            background: rgba(176, 141, 87, 0.1);
+            border-color: var(--dourado);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(176, 141, 87, 0.25);
+        }
+        .social-area a:hover i {
+            transform: scale(1.1);
+        }
 
         #iframe-area {
             width: 100%; height: 100%; border-radius: 12px; overflow: hidden;
@@ -443,7 +482,7 @@
 
                 <div id="footer-social" class="social-area">
                     <a href="https://instagram.com/gcmsalvador" target="_blank">
-                        <i class="ph ph-instagram-logo" style="font-size: 32px;"></i> 
+                        <i class="ph ph-instagram-logo"></i> 
                         <span>@gcmsalvador</span>
                     </a>
                 </div>
